@@ -8,6 +8,7 @@ function Game({ channel, setChannel }) {
   );
   const [result, setResult] = useState({ winner: "none", state: "none" });
 
+  // EveryTime a user check wether any information about other user to play the game and do chat
   channel.on("user.watching.start", (event) => {
     setPlayersJoined(event.watcher_count === 2);
   });

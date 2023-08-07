@@ -10,6 +10,7 @@ function Board({ result, setResult }) {
   const { channel } = useChannelStateContext();
   const { client } = useChatContext();
 
+  // useEffect is used to check whether it is tie or WIn
   useEffect(() => {
     checkIfTie();
     checkWin();
@@ -18,6 +19,8 @@ function Board({ result, setResult }) {
     if (turn === player && board[square] === "") {
       setTurn(player === "X" ? "O" : "X");
 
+      // by this we can send the current status that is done by user to channel. sothat
+      // other user can also see it in their interface. about Game.
       await channel.sendEvent({
         type: "game-move",
         data: { square, player },
